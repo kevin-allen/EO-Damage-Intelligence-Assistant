@@ -1,0 +1,41 @@
+services:
+  app:
+    build: .
+    image: eo-damage-app:latest
+    ports:
+      - "127.0.0.1:8501:8501"   # loopback only (N8 in software_requirements.md)
+    volumes:
+      - /data/xView2:/data/xView2:ro
+      - /data/eo-damage-models:/data/eo-damage-models   # RW: training writes here
+      - chroma_data:/app/chroma                         # named volume
+      - ./knowledge:/app/knowledge:ro
+      - ./predictions:/app/predictions                  # RW: precompute writes here
+    environment:
+      - OLLAMA_HOST=http://ollama:11434
+      - OLLAMA_MODEL=qwen2.5:7b-instruct-q4_K_M
+      - CV_CHECKPOINT_PATH=/data/eo-damage-models/resnet50_damage.pt
+      - XVIEW2_ROOT=/data/xView2
+    depends_on:
+      - ollama
+    # No GPU reservation at runtime — Ollama owns the GPU.
+    # Offline jobs (training, precompute) are invoked with --gpus all:
+    #   docker compose run --rm --gpus all app python scripts/train_classifier.py
+    #   docker compose run --rm --gpus all app python scripts/precompute_predictions.py
+
+  ollama:
+    image: ollama/ollama:latest
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+
+volumes:
+  ollama_data:
+  chroma_data:

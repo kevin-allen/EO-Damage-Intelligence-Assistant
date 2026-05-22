@@ -1,0 +1,17 @@
+# Web UI
+streamlit>=1.36
+
+# RAG: embeddings + vector store
+sentence-transformers>=2.7
+chromadb>=0.5
+
+# LLM client (HTTP to Ollama)
+requests>=2.31
+
+# Data / imagery
+pillow>=10
+numpy>=1.26
+pyyaml>=6
+
+# CV utilities (torch and torchvision come from the pytorch/pytorch base image)
+tqdm>=4.66

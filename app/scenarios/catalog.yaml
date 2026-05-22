@@ -1,0 +1,80 @@
+# Curated scenario catalog (D2 in software_requirements.md).
+# 12 entries total: 3 per disaster type across hurricane, wildfire, flood,
+# earthquake/tsunami. Specific xView2 tile IDs are filled in during
+# dataset exploration (see open task in setup notes).
+
+# --- hurricane ----------------------------------------------------------
+- id: hurricane-01
+  event: TODO            # e.g., hurricane-michael
+  tile: TODO             # e.g., hurricane-michael_00000042
+  disaster_type: hurricane
+  description: "TODO: hurricane scenario 1"
+
+- id: hurricane-02
+  event: TODO
+  tile: TODO
+  disaster_type: hurricane
+  description: "TODO: hurricane scenario 2"
+
+- id: hurricane-03
+  event: TODO
+  tile: TODO
+  disaster_type: hurricane
+  description: "TODO: hurricane scenario 3"
+
+# --- wildfire -----------------------------------------------------------
+- id: wildfire-01
+  event: TODO            # e.g., santa-rosa-wildfire
+  tile: TODO
+  disaster_type: wildfire
+  description: "TODO: wildfire scenario 1"
+
+- id: wildfire-02
+  event: TODO
+  tile: TODO
+  disaster_type: wildfire
+  description: "TODO: wildfire scenario 2"
+
+- id: wildfire-03
+  event: TODO
+  tile: TODO
+  disaster_type: wildfire
+  description: "TODO: wildfire scenario 3"
+
+# --- flood --------------------------------------------------------------
+- id: flood-01
+  event: TODO            # e.g., midwest-flooding
+  tile: TODO
+  disaster_type: flood
+  description: "TODO: flood scenario 1"
+
+- id: flood-02
+  event: TODO
+  tile: TODO
+  disaster_type: flood
+  description: "TODO: flood scenario 2"
+
+- id: flood-03
+  event: TODO
+  tile: TODO
+  disaster_type: flood
+  description: "TODO: flood scenario 3"
+
+# --- earthquake / tsunami ----------------------------------------------
+- id: earthquake-01
+  event: TODO            # e.g., palu-tsunami or mexico-city-earthquake
+  tile: TODO
+  disaster_type: earthquake_tsunami
+  description: "TODO: earthquake/tsunami scenario 1"
+
+- id: earthquake-02
+  event: TODO
+  tile: TODO
+  disaster_type: earthquake_tsunami
+  description: "TODO: earthquake/tsunami scenario 2"
+
+- id: earthquake-03
+  event: TODO
+  tile: TODO
+  disaster_type: earthquake_tsunami
+  description: "TODO: earthquake/tsunami scenario 3"
