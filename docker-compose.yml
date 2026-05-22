@@ -1,6 +1,8 @@
 services:
   app:
-    build: .
+    build:
+      context: .
+      network: host       # use host's DNS during build (docker bridge DNS is broken on this workstation)
     image: eo-damage-app:latest
     ports:
       - "127.0.0.1:8501:8501"   # loopback only (N8 in software_requirements.md)
