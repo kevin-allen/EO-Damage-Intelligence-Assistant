@@ -4,6 +4,8 @@ streamlit>=1.36
 # RAG: embeddings + vector store
 sentence-transformers>=2.7
 chromadb>=0.5
+# Override chromadb's transitive pin to ancient otel exporter (incompatible with protobuf>=4).
+opentelemetry-exporter-otlp-proto-grpc>=1.27
 
 # LLM client (HTTP to Ollama)
 requests>=2.31
