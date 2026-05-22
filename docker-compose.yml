@@ -10,6 +10,8 @@ services:
       - chroma_data:/app/chroma                         # named volume
       - ./knowledge:/app/knowledge:ro
       - ./predictions:/app/predictions                  # RW: precompute writes here
+      - ~/.cache/torch:/root/.cache/torch               # share torch hub cache (ResNet50 weights)
+      - ~/.cache/huggingface:/root/.cache/huggingface   # share HF cache (MiniLM, etc.)
     environment:
       - OLLAMA_HOST=http://ollama:11434
       - OLLAMA_MODEL=qwen2.5:7b-instruct-q4_K_M
