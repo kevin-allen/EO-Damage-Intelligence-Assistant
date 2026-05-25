@@ -16,7 +16,7 @@ services:
       - ~/.cache/huggingface:/root/.cache/huggingface   # share HF cache (MiniLM, etc.)
     environment:
       - OLLAMA_HOST=http://ollama:11434
-      - OLLAMA_MODEL=qwen2.5:7b-instruct-q4_K_M
+      - OLLAMA_MODEL=qwen2.5:14b-instruct-q4_K_M
       - CV_CHECKPOINT_PATH=/data/eo-damage-models/resnet50_damage.pt
       - XVIEW2_ROOT=/data/xView2
     depends_on:

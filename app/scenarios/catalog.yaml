@@ -1,80 +1,80 @@
 # Curated scenario catalog (D2 in software_requirements.md).
-# 12 entries total: 3 per disaster type across hurricane, wildfire, flood,
-# earthquake/tsunami. Specific xView2 tile IDs are filled in during
-# dataset exploration (see open task in setup notes).
+# 12 entries: 3 per disaster type, spanning moderate / severe / catastrophic
+# severity per arch §2.4. Tiles sourced from the xView2 test split; severity
+# is the GT-derived severity_index (arch §2.3).
 
 # --- hurricane ----------------------------------------------------------
-- id: hurricane-01
-  event: TODO            # e.g., hurricane-michael
-  tile: TODO             # e.g., hurricane-michael_00000042
+- id: hurricane-michael-0264
+  event: hurricane-michael
+  tile: hurricane-michael_00000264
   disaster_type: hurricane
-  description: "TODO: hurricane scenario 1"
+  description: "Hurricane Michael — moderate damage (sev 0.28, 163 buildings)"
 
-- id: hurricane-02
-  event: TODO
-  tile: TODO
+- id: hurricane-harvey-0476
+  event: hurricane-harvey
+  tile: hurricane-harvey_00000476
   disaster_type: hurricane
-  description: "TODO: hurricane scenario 2"
+  description: "Hurricane Harvey — severe damage (sev 0.66, 254 buildings)"
 
-- id: hurricane-03
-  event: TODO
-  tile: TODO
+- id: hurricane-matthew-0395
+  event: hurricane-matthew
+  tile: hurricane-matthew_00000395
   disaster_type: hurricane
-  description: "TODO: hurricane scenario 3"
+  description: "Hurricane Matthew — catastrophic damage (sev 0.89, 115 buildings)"
 
 # --- wildfire -----------------------------------------------------------
-- id: wildfire-01
-  event: TODO            # e.g., santa-rosa-wildfire
-  tile: TODO
+- id: socal-fire-1236
+  event: socal-fire
+  tile: socal-fire_00001236
   disaster_type: wildfire
-  description: "TODO: wildfire scenario 1"
+  description: "SoCal fire — moderate damage (sev 0.32, 82 buildings)"
 
-- id: wildfire-02
-  event: TODO
-  tile: TODO
+- id: socal-fire-0937
+  event: socal-fire
+  tile: socal-fire_00000937
   disaster_type: wildfire
-  description: "TODO: wildfire scenario 2"
+  description: "SoCal fire — severe damage (sev 0.55, 67 buildings)"
 
-- id: wildfire-03
-  event: TODO
-  tile: TODO
+- id: santa-rosa-wildfire-0089
+  event: santa-rosa-wildfire
+  tile: santa-rosa-wildfire_00000089
   disaster_type: wildfire
-  description: "TODO: wildfire scenario 3"
+  description: "Santa Rosa wildfire — catastrophic damage (sev 0.88, 195 buildings)"
 
 # --- flood --------------------------------------------------------------
-- id: flood-01
-  event: TODO            # e.g., midwest-flooding
-  tile: TODO
+- id: midwest-flooding-0298
+  event: midwest-flooding
+  tile: midwest-flooding_00000298
   disaster_type: flood
-  description: "TODO: flood scenario 1"
+  description: "Midwest flooding — moderate damage (sev 0.30, 9 buildings)"
 
-- id: flood-02
-  event: TODO
-  tile: TODO
+- id: midwest-flooding-0286
+  event: midwest-flooding
+  tile: midwest-flooding_00000286
   disaster_type: flood
-  description: "TODO: flood scenario 2"
+  description: "Midwest flooding — severe damage (sev 0.62, 17 buildings)"
 
-- id: flood-03
-  event: TODO
-  tile: TODO
+- id: midwest-flooding-0008
+  event: midwest-flooding
+  tile: midwest-flooding_00000008
   disaster_type: flood
-  description: "TODO: flood scenario 3"
+  description: "Midwest flooding — catastrophic damage (sev 0.91, 11 buildings)"
 
 # --- earthquake / tsunami ----------------------------------------------
-- id: earthquake-01
-  event: TODO            # e.g., palu-tsunami or mexico-city-earthquake
-  tile: TODO
+- id: palu-tsunami-0143
+  event: palu-tsunami
+  tile: palu-tsunami_00000143
   disaster_type: earthquake_tsunami
-  description: "TODO: earthquake/tsunami scenario 1"
+  description: "Palu tsunami — moderate damage (sev 0.31, 378 buildings)"
 
-- id: earthquake-02
-  event: TODO
-  tile: TODO
+- id: palu-tsunami-0181
+  event: palu-tsunami
+  tile: palu-tsunami_00000181
   disaster_type: earthquake_tsunami
-  description: "TODO: earthquake/tsunami scenario 2"
+  description: "Palu tsunami — severe damage (sev 0.64, 590 buildings)"
 
-- id: earthquake-03
-  event: TODO
-  tile: TODO
+- id: palu-tsunami-0032
+  event: palu-tsunami
+  tile: palu-tsunami_00000032
   disaster_type: earthquake_tsunami
-  description: "TODO: earthquake/tsunami scenario 3"
+  description: "Palu tsunami — catastrophic damage (sev 0.93, 76 buildings)"

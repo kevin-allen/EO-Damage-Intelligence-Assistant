@@ -136,17 +136,17 @@ Pure function: list of building predictions → structured JSON. Schema:
   },
   "spatial": {
     "quadrants": {
-      "NW": {"total": 110, "destroyed_pct": 4.5},
-      "NE": {"total":  98, "destroyed_pct": 22.4},
-      "SW": {"total":  90, "destroyed_pct": 3.3},
-      "SE": {"total": 114, "destroyed_pct": 28.1}
+      "NW": {"total": 110, "mean_severity": 0.18},
+      "NE": {"total":  98, "mean_severity": 0.54},
+      "SW": {"total":  90, "mean_severity": 0.15},
+      "SE": {"total": 114, "mean_severity": 0.72}
     }
   },
   "severity_index": 0.41
 }
 ```
 
-`severity_index` is a single scalar in [0, 1] derived from class weights (e.g., `0*no + 0.33*minor + 0.66*major + 1.0*destroyed`). Used both for UI display and to drive RAG queries.
+`severity_index` is a single scalar in [0, 1] derived from class weights (`0*no + 0.33*minor + 0.66*major + 1.0*destroyed`). Used both for UI display and to drive RAG queries. `mean_severity` per quadrant applies the same weighting bucketed by polygon-centroid quadrant — preferred over a `destroyed_pct` because it degrades gracefully when the classifier under-calls `destroyed` (a `major_damage`-heavy quadrant still reads ~0.66 instead of 0%).
 
 This structured object is the **single source of truth** for damage figures. Grounding is enforced **technically, not just by instruction** (per F10): a sibling renderer `render_damage_tables(data) -> dict[str, str]` produces deterministic markdown tables (a per-class breakdown and a per-quadrant priority table) directly from the JSON. These pre-rendered strings are inserted verbatim into the final report — the LLM never emits numbers itself.
 
@@ -174,7 +174,7 @@ Index is built once during image build / first run and persisted as a docker vol
 
 Report generation is **hybrid** (code + LLM), not pure LLM. This is the technical mechanism that backs F10:
 
-1. **Code-rendered tables** — `render_damage_tables(aggregator_json)` produces deterministic markdown for the Damage Breakdown (per-class table) and Priority Zones (per-quadrant table) sections.
+1. **Code-rendered tables** — `render_damage_tables(aggregator_json)` produces deterministic markdown for the Damage Breakdown (per-class table) and Priority Zones (per-quadrant table, sorted by `mean_severity` descending) sections.
 2. **LLM prose call** — Ollama is asked to write only the prose sections: Situational Overview, Priority Zones commentary, Uncertainty & Caveats, Recommended Actions. The prompt explicitly forbids restating numbers; the tables are included as reference-only context.
 3. **Assembly** — final report is concatenated in fixed section order:
    - `## Situational Overview` ← LLM prose

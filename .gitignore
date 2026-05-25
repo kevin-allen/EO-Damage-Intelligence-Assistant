@@ -16,6 +16,9 @@ env/
 predictions/*.json
 chroma/
 
+# One-off selection aid (regenerable via scripts/build_scenario_browser.py)
+scenario_browser/
+
 # Editor / OS
 .vscode/
 .idea/
