@@ -28,32 +28,9 @@
 
 ## How it works
 
-```mermaid
-flowchart LR
-    subgraph Offline["Offline (one-time, GPU)"]
-        X[xView2 train split] --> T[Train ResNet50]
-        T --> M[(resnet50_damage.pt)]
-        C[catalog.yaml] --> P[Precompute predictions]
-        M --> P
-        P --> J[(predictions/*.json)]
-    end
-
-    subgraph Runtime["Runtime (per session, CPU on the app side)"]
-        U[Streamlit UI] --> Sel{Scenario selected}
-        Sel --> Agg[Aggregator]
-        J --> Agg
-        Agg --> Tbl[Code-rendered tables]
-        Agg --> Q[RAG query<br/>disaster + severity bucket + fixed keywords]
-        K[(knowledge/*.md)] -.->|MiniLM + ChromaDB| R[Top-K chunks]
-        Q --> R
-        Agg --> LLM[Ollama qwen2.5:14b]
-        R --> LLM
-        LLM --> G[Digit-stripping guardrail]
-        Tbl --> Asm[Hybrid report assembly]
-        G --> Asm
-        Asm --> U
-    end
-```
+<p align="center">
+  <img src="docs/architecture.png" alt="Software architecture: offline training/precompute pipeline above, runtime pipeline below" width="640">
+</p>
 
 **Key design choices:**
 
@@ -217,7 +194,7 @@ eo-damage-intelligence-assistant/
 
 ## Workstation gotchas
 
-A few non-portable specifics from the DKFZ workstation used to develop this:
+A few non-portable specifics from the development workstation used to build this:
 
 - Docker 29's `--gpus all` fails (`AMD CDI spec not found`); use `--device nvidia.com/gpu=all`. `docker compose run` does not accept `--gpus`, so offline GPU jobs are invoked with plain `docker run` (see Quick Start step 2-3).
 - PyTorch DataLoader needs `--shm-size=2g` or the multi-worker prefetch crashes with `Bus error` within minutes.
